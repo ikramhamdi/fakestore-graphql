@@ -19,10 +19,23 @@ class CorsMiddleware
     {
         $response = $next($request);
 
-        $response->headers->set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        // Check the environment
+        $allowedOrigins = [
+            'http://localhost:3000', // Local frontend
+            'https://product-catalog-frontend-eosin.vercel.app/' // Vercel frontend
+        ];
+
+        // Allow only the origins in the array
+        $origin = $request->headers->get('Origin');
+        if (in_array($origin, $allowedOrigins)) {
+            $response->headers->set('Access-Control-Allow-Origin', $origin);
+        }
+
+        // Set other CORS headers
         $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
         $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
         return $response;
     }
 }
+
