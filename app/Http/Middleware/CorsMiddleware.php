@@ -22,7 +22,7 @@ class CorsMiddleware
         // Check the environment
         $allowedOrigins = [
             'http://localhost:3000', // Local frontend
-            'https://product-catalog-frontend-ten.vercel.app/' // Vercel frontend
+            'https://product-catalog-frontend-ikram-hamdis-projects.vercel.app' // Vercel frontend
         ];
 
         // Allow only the origins in the array
